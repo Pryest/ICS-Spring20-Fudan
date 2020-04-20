@@ -3,7 +3,7 @@
 ### <center>Fudan University / 2020 Spring</center>
 
 <center>Assignment 2</center>
-This assignment will make up 20% of the final score. It will **due on Apr 27**, and you must pass all the tests before submitting your work. If you've forgotten how to configure the checker, please refer to [checker guidelines](https://github.com/SunflowerAries/ICS-Spring20-Fudan/blob/master/README.md#checker-configuration)
+This assignment will make up 20% of the final score. It will **due on Apr 27**, and you must pass all the tests before submitting your work. Recently we've made some **changes** to grade your work automatically, please refer to [checker guidelines](https://github.com/SunflowerAries/ICS-Spring20-Fudan/blob/master/README.md#checker-configuration) for details.
 
 #### Background
 
@@ -12,6 +12,15 @@ CPU time = \frac{Seconds}{Program} = \frac{Instructions}{Program}\times\frac{Cyc
 $$
 
 Pipelining is a technique where multiple instructions are overlapped during execution.  It reduces CPI so that total CPU time consumption is dramatically reduced compared to non-pipelining. All modern high-performance microprocessors are pipelined.
+
+From now on, we'll measure CPI of your CPU, and you may alter 76th-79th lines of `cpu_tb.sv` to fit into yours.
+
+```systemverilog
+cycle = cycle + 1;
+
+if (~mips.dp.flushD & ~mips.dp.haz.stallD)
+	instr_count = instr_count + 1;
+```
 
 However, because multiple instructions are handled concurrently in a pipelined system, there exists possibility of *hazards*, which need special solution.
 
